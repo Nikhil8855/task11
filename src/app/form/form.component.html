@@ -1,0 +1,76 @@
+<div>
+<table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>DOB</th>
+        <th>Language</th>
+        <th>Gender</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>name</td>
+        <td>xyz</td>
+        <td>rf</td>
+        <td>df</td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
+<h4>{{login.value | json}}</h4>
+
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add User</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+
+    <form [formGroup]="login" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" formControlName="name" [(ngModel)] = "login.name" class="form-control" placeholder="Enter name" id="name">
+    </div>
+    <br>
+    <input type ="date" formControlName="date" class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+    <br>
+
+    <div class="form-group">
+      <label for="sel1">Language</label>
+      <select class="form-control" id="sel1" formControlName="select">
+        <option>Multiple Language</option>
+        <option>Hindi</option>
+        <option>Marathi</option>
+        <option>English</option>
+      </select>
+    </div>
+    <br>
+
+    <div class="form-check-inline">
+      <label class="form-check-label">
+        <input type="radio"  class="form-check-input" name="optradio">Male
+      </label>
+    </div>
+    <div class="form-check-inline">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="optradio">Female
+      </label>
+    </div>
+
+  </form>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" [disabled]= "!login.valid"  (click)="c('Save click')">Save Data</button>
+  </div>
+</ng-template>
+
+<button class="btn btn-lg btn-outline-primary" (click)="open(content)">Add User</button>
